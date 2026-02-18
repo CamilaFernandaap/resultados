@@ -306,11 +306,11 @@ def plotar_4_blocos(blocos_perda, blocos_ganho, arquivo_parquet, variavel, titul
                    zorder=3)
             idx_ganho += 1
     
-    ax.set_title(titulo, fontsize=22, fontweight='bold', pad=20)
-    ax.set_xlabel('Ano', fontsize=18, fontweight='bold')
-    ax.set_ylabel(ylabel, fontsize=18, fontweight='bold')
-    ax.tick_params(axis='both', labelsize=14)
-    ax.legend(fontsize=12, loc='best', frameon=True, 
+    ax.set_title(titulo, fontsize=32, fontweight='bold', pad=20)
+    ax.set_xlabel('Ano', fontsize=26, fontweight='bold')
+    ax.set_ylabel(ylabel, fontsize=26, fontweight='bold')
+    ax.tick_params(axis='both', labelsize=22)
+    ax.legend(fontsize=20, loc='best', frameon=True, 
              facecolor='white', edgecolor='gray', framealpha=0.95)
     ax.grid(True, alpha=0.3)
     ax.set_facecolor('#EBEBEB')
