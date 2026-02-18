@@ -105,7 +105,7 @@ def identificar_blocos_extremos_OTIMIZADO(tif_1990, tif_2020, classe_alvo, taman
             del mudanca_chunk
             gc.collect()
         
-        print(f"\n  ✓ {total_blocos} blocos processados")
+        print(f"\n  {total_blocos} blocos processados")
     
     df_blocos = pd.DataFrame(blocos_info)
     df_blocos_sorted = df_blocos.sort_values('mudanca_liquida')
@@ -197,7 +197,7 @@ def extrair_serie_temporal_CHUNKED(arquivo_parquet, bloco, variavel='temp'):
         
         gc.collect()
     
-    print(f"\n      ✓ Processados: {total_registros:,} | Filtrados: {registros_filtrados:,}")
+    print(f"\nProcessados: {total_registros:,} | Filtrados: {registros_filtrados:,}")
     
     if len(chunks_filtrados) == 0:
         return None
@@ -243,7 +243,7 @@ def plotar_4_blocos(blocos_perda, blocos_ganho, arquivo_parquet, variavel, titul
         print(f"\n    Bloco #{int(bloco['bloco_id'])} (PERDA):")
         df = extrair_serie_temporal_CHUNKED(arquivo_parquet, bloco, variavel)
         if df is not None:
-            print(f"      ✓ {len(df)} anos | Média: {df['valor'].mean():.2f}")
+            print(f"{len(df)} anos | Média: {df['valor'].mean():.2f}")
             series_blocos.append({
                 'bloco_id': int(bloco['bloco_id']),
                 'tipo': 'perda',
@@ -258,7 +258,7 @@ def plotar_4_blocos(blocos_perda, blocos_ganho, arquivo_parquet, variavel, titul
         print(f"\n    Bloco #{int(bloco['bloco_id'])} (GANHO):")
         df = extrair_serie_temporal_CHUNKED(arquivo_parquet, bloco, variavel)
         if df is not None:
-            print(f"      ✓ {len(df)} anos | Média: {df['valor'].mean():.2f}")
+            print(f"{len(df)} anos | Média: {df['valor'].mean():.2f}")
             series_blocos.append({
                 'bloco_id': int(bloco['bloco_id']),
                 'tipo': 'ganho',
@@ -269,7 +269,7 @@ def plotar_4_blocos(blocos_perda, blocos_ganho, arquivo_parquet, variavel, titul
             print(f"      ✗ Sem dados")
     
     if len(series_blocos) == 0:
-        print(f"    ⚠️  Nenhum dado encontrado!")
+        print(f"Nenhum dado encontrado!")
         return
     
     # Plotar
@@ -317,7 +317,7 @@ def plotar_4_blocos(blocos_perda, blocos_ganho, arquivo_parquet, variavel, titul
     
     plt.tight_layout()
     plt.savefig(f'./resultados/{output_file}', dpi=300, bbox_inches='tight')
-    print(f"\n  ✓ Salvo: {output_file}")
+    print(f"\n  Salvo: {output_file}")
     plt.close()
 
 if __name__ == "__main__":
@@ -338,7 +338,7 @@ if __name__ == "__main__":
     print('='*80)
     
     # TEMPERATURA
-    print("\n[1/3] 🌡️  TEMPERATURA")
+    print("\n[1/3] TEMPERATURA")
     plotar_4_blocos(
         blocos_perda, blocos_ganho,
         arquivo_temp, 'temp',
@@ -348,7 +348,7 @@ if __name__ == "__main__":
     )
     
     # PRECIPITAÇÃO
-    print("\n[2/3] 🌧️  PRECIPITAÇÃO")
+    print("\n[2/3] PRECIPITAÇÃO")
     plotar_4_blocos(
         blocos_perda, blocos_ganho,
         arquivo_prec, 'prec',
@@ -358,7 +358,7 @@ if __name__ == "__main__":
     )
     
     # RADIAÇÃO
-    print("\n[3/3] ☀️  RADIAÇÃO")
+    print("\n[3/3] RADIAÇÃO")
     plotar_4_blocos(
         blocos_perda, blocos_ganho,
         arquivo_rad, 'rad',
@@ -367,4 +367,4 @@ if __name__ == "__main__":
         'rad_formacao_florestal_sp.png'
     )
     
-    print("\n✅ CONCLUÍDO!")
+    print("\n CONCLUÍDO!")
